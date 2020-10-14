@@ -1,9 +1,6 @@
 # Disentangled Imputed Video autoEncoder (DIVE)
 
 Code for NeurIPS 2020 paper titled [Learning Disentangled Representations of Video with Missing Data](https://arxiv.org/abs/2006.13391)
-This is an implementation for Scenario 3 in the experiments of the paper:
-"Learning Disentangled Representations of Video with Missing Data"
-
 
 Missing data poses significant challenges while learning representations of video sequences.
 We present DIVE, a deep generative model that imputes and predicts future video frames in the presence of missing data.
