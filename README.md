@@ -61,7 +61,7 @@ For this demo we don't provide our fixed test set. Instead we use an on-the-fly 
 ### MOTSChallenge Pedestrian
 Download the MOTSChallenge pre-processed dataset [here](https://drive.google.com/file/d/1t3Z4ebREwaSrE5WxziuKdvjrllM4p-NM/view?usp=sharing). Allocate it in the directory that you find convenient.
 Since the code is set for MovingMNIST experiments, some changes will have to be made to the config.py file.
-We set image_size=[256, 256], crop_size=[256, 256], dset_dir: <em>data directory<em>, dset_name: "pedestrian", num_missing: 1, num_objects: 3, n_components: 3, hidden_size: 96, stn_scale_prior: 3.5 and gamma_switch_step = 5e3.
+We set image_size=[256, 256], crop_size=[256, 256], dset_dir: <em>data directory</em>, dset_name: "pedestrian", num_missing: 1, num_objects: 3, n_components: 3, hidden_size: 96, stn_scale_prior: 3.5 and gamma_switch_step = 5e3.
 
 We use as the backbone of our implementation the available implementation for Decompositional Disentangled Predictive Auto-Encoder ([DDPAE](https://github.com/jthsieh/DDPAE-video-prediction)), as well as many of its functions, while it is built on Pyro.
 
