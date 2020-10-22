@@ -117,13 +117,38 @@ def get_objects(input, transformer, n_components, object_size):
   input_obj = input_obj.view(-1, *input_obj.size()[-3:])
   return input_obj
 
-def constrain_pose(pose, scale_prior):
+def constrain_pose(pose, scale_prior, gamma_steps):
   '''
   Constrain the value of the pose vectors.
   '''
   scale = torch.clamp(pose[..., :1], scale_prior - 1, scale_prior + 1)
   xy = F.tanh(pose[..., 1:]) * (scale - 0.5)
   pose = torch.cat([scale, xy], dim=-1)
+  return pose
+
+def constrain_pose_pedestrian(pose, scale_prior, gamma_steps):
+  '''
+  Constrain the value of the pose vectors.
+  '''
+  # Makes training faster.
+  # Note: clamps the size to a max or min centered at self.scale.
+  #       then scales displacements and rejoins
+  # TODO:pedestrian change limitations
+  margin = 1/8
+
+  scale = torch.clamp(pose[..., :1], scale_prior - 1, scale_prior + 2.5)
+  x = F.tanh(pose[..., 1:2])
+  y = F.tanh(pose[..., 2: ])
+
+  if gamma_steps % 2000 == 0 and gamma_steps is not 0:
+    margin = margin/(2*(gamma_steps/2000))
+
+  x = torch.clamp(x, -1 + margin, 1 - margin) * (scale - 0.5)
+  y = torch.clamp(y, -1 + margin, 1 - margin)  * (scale - 0.5)
+
+  xy = torch.cat([x,y], dim=-1)
+  pose = torch.cat([scale, xy], dim=-1)
+
   return pose
 
 def get_output(components):

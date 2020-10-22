@@ -31,6 +31,10 @@ class DiveModel(BaseModel):
     self.is_train = opt.is_train
     assert opt.image_size[0] == opt.image_size[1]
     self.image_size = opt.image_size[0]
+    if self.image_size == 256:
+      self.pedestrian = True
+    else:
+      self.pedestrian = False
     self.object_size = self.image_size // 2
     print('Image size: {}'.format(self.image_size))
     print('Object size: {}'.format(self.image_size))
@@ -176,7 +180,10 @@ class DiveModel(BaseModel):
                                     initial_pose_sigma, sample)
     pose += initial_pose.view(-1, 1, self.n_components, self.pose_latent_size)
 
-    pose = utils.constrain_pose(pose, self.scale)
+    if self.pedestrian:
+      pose = utils.constrain_pose_pedestrian(pose, self.scale, self.gamma_steps)
+    else:
+      pose = utils.constrain_pose(pose, self.scale, self.gamma_steps)
 
     # Get input objects
     input_pose = pose[:, :self.n_frames_input, :, :]
@@ -229,7 +236,11 @@ class DiveModel(BaseModel):
     initial_pose = self.pyro_sample('initial_pose', dist.Normal, initial_pose_prior_mu,
                                     initial_pose_prior_sigma, sample=True)
     pose += initial_pose.view(-1, 1, self.n_components, self.pose_latent_size)
-    pose = utils.constrain_pose(pose, self.scale)
+
+    if self.pedestrian:
+      pose = utils.constrain_pose_pedestrian(pose, self.scale, self.gamma_steps)
+    else:
+      pose = utils.constrain_pose(pose, self.scale, self.gamma_steps)
 
     masks_prior_mu = self.masks_prior_mu.repeat(batch_size * self.n_frames_input * self.n_components, 1)
     masks_prior_sigma = self.masks_prior_sigma.repeat(batch_size * self.n_frames_input * self.n_components, 1)

@@ -1,6 +1,6 @@
 # Disentangled Imputed Video autoEncoder (DIVE)
 
-Code for NeurIPS 2020 paper titled [Learning Disentangled Representations of Video with Missing Data](https://arxiv.org/abs/2006.13391)
+Code for NeurIPS 2020 paper titled [Learning Disentangled Representations of Video with Missing Data](https://arxiv.org/abs/2006.13391).
 
 Missing data poses significant challenges while learning representations of video sequences.
 We present DIVE, a deep generative model that imputes and predicts future video frames in the presence of missing data.
@@ -15,6 +15,7 @@ Content will be available soon.
 
 ## Demo
 
+Following we provide details to run both datasets presented in our paper. If you encounter a problem please feel free to contact the authors.
 ### Deformed and Missing-Data Moving MNIST
 
 We prepare the code to be trained and tested for Scenario 3 of the experiments for Moving MNIST which includes:
@@ -25,6 +26,8 @@ For this experiment, missing labels are set to be soft.
 
 A qualitative example of the expected results after 600 epochs (about 100k iterations) is:
 <img src="example_image_varying_MNIST.png" width="800px"/>
+
+Expected quantitative results can be found in the paper. For Scenario 1, change crop_size and set the flag use_crop_size to True in the config.py file.
 
 After setting up the environment, we can train and test the code with:
 ```
@@ -53,12 +56,18 @@ mkdir moving_mnist
 cd moving_mnist
 wget http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
 ```
-For this demo we can't provide our fixed test set. Instead we use an on-the-fly generated set for testing.
-We use as skeleton the available implementation for Decompositional Disentangled Predictive Auto-Encoder ([DDPAE](https://github.com/jthsieh/DDPAE-video-prediction)), as well as many of its functions, while it is built on Pyro.
+For this demo we don't provide our fixed test set. Instead we use an on-the-fly generated set for testing.
+
+### MOTSChallenge Pedestrian
+Download the MOTSChallenge pre-processed dataset [here](https://drive.google.com/file/d/1t3Z4ebREwaSrE5WxziuKdvjrllM4p-NM/view?usp=sharing). Allocate it in the directory that you find convenient.
+Since the code is set for MovingMNIST experiments, some changes will have to be made to the config.py file.
+We set image_size=[256, 256], crop_size=[256, 256], dset_dir: <data directory>, dset_name: "pedestrian", num_missing: 1, num_objects: 3, n_components: 3, hidden_size: 96, stn_scale_prior: 3.5 and gamma_switch_step = 5e3.
+
+We use as the backbone of our implementation the available implementation for Decompositional Disentangled Predictive Auto-Encoder ([DDPAE](https://github.com/jthsieh/DDPAE-video-prediction)), as well as many of its functions, while it is built on Pyro.
 
 ## Citation
 
-If you find this repository useful in your research, please cite the following paper:
+If you find this repository useful in your research, please cite our paper:
 ```
 @article{Comas2020Dive,
   title={Learning Disentangled Representations of Video with Missing Data},
