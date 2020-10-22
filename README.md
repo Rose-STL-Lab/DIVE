@@ -6,7 +6,7 @@ Missing data poses significant challenges while learning representations of vide
 We present DIVE, a deep generative model that imputes and predicts future video frames in the presence of missing data.
 Specifically, DIVE contributes by:
 - Introducing a missingness latent variable,
-- Disentangles the hidden video representations into static and dynamic appearance, pose, and missingness factors for each object and
+- Disentangling the hidden video representations into static and dynamic appearance, pose, and missingness factors for each object and
 - Imputing each object trajectory where data is missing.
 This is done in an end-to-end training fashion and with using only self-supervision, by leveraging a VAE framework.
 
