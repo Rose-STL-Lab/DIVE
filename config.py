@@ -117,9 +117,11 @@ def parse(is_train):
         opt.n_components = 3
         opt.n_frames_output = 5
         opt.gamma_switch_step =5e3
+        opt.batch_size = 32
 
     else:
         raise NotImplementedError
+        
     assert opt.n_frames_input > 0 and opt.n_frames_output > 0
 
 
