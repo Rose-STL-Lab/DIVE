@@ -108,10 +108,18 @@ def parse(is_train):
         if opt.crop_size[0] < opt.image_size[0] or opt.crop_size[1] < opt.image_size[1]:
             opt.use_crop_size = True
 
-    else:
-        # TODO: implement MOTSChallenge pedestrian
-        raise NotImplementedError
+    elif opt.dset_name == 'moving_mnist':
+        opt.n_channels = 1
+        opt.image_size = [256, 256]
+        opt.crop_size = [256, 256]
+        opt.stn_scale_prior = 3.5
+        opt.num_objects = [3]
+        opt.n_components = 3
+        opt.n_frames_output = 5
+        opt.gamma_switch_step =5e3
 
+    else:
+        raise NotImplementedError
     assert opt.n_frames_input > 0 and opt.n_frames_output > 0
 
 
