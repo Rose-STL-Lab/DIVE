@@ -11,7 +11,7 @@ Specifically, DIVE contributes by:
 This is done in an end-to-end training fashion and with using only self-supervision, by leveraging a VAE framework.
 
 ## Poster, Slides and video
-Content will be available soon.
+The poster is the file with name "NeurIPS_DIVE_Poster_v3.pdf". Slides and video will be available soon.
 
 ## Demo
 
