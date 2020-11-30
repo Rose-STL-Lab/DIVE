@@ -108,7 +108,7 @@ def parse(is_train):
         if opt.crop_size[0] < opt.image_size[0] or opt.crop_size[1] < opt.image_size[1]:
             opt.use_crop_size = True
 
-    elif opt.dset_name == 'moving_mnist':
+    elif opt.dset_name == 'pedestrian':
         opt.n_channels = 1
         opt.image_size = [256, 256]
         opt.crop_size = [256, 256]
