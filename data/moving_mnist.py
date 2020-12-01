@@ -189,7 +189,7 @@ class MovingMNIST(data.Dataset):
             images, images_unocc, occ_labels = self.generate_moving_mnist(num_digits)
 
 
-        if self.crop_size[0] != self.image_size_ and self.crop_size[1] != self.image_size_:
+        if self.crop_size[0] != self.image_size_ or self.crop_size[1] != self.image_size_:
 
             # Note: Code for center-cropping frames. Lacks testing
             # if self.crop_center_flag:
