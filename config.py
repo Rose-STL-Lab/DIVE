@@ -56,7 +56,7 @@ parser.add_argument('--evaluate_every', type=int, default=50, help='evaluate on 
 
 # Variations to moving MNIST
 parser.add_argument('--image_size', type=int, default=[64, 64])
-parser.add_argument('--crop_size', type=int, default=[64, 64], help='Visible size on the bottom right side of the frame')
+parser.add_argument('--crop_size', type=int, ,nargs='+', default=[64, 64], help='Visible size on the bottom right side of the frame')
 parser.add_argument('--use_crop_size', type=bool, default=False, help='save every x epochs')
 parser.add_argument('--num_missing', type=int, default=1, help='Number of timesteps with missing object per component')
 parser.add_argument('--ini_et_alpha', type=int, default=100, help='Initial value alpha for the elastic transformation')
