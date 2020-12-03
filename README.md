@@ -27,7 +27,7 @@ For this experiment, missing labels are set to be soft.
 A qualitative example of the expected results after 600 epochs (about 100k iterations) is:
 <img src="example_image_varying_MNIST.png" width="800px"/>
 
-Expected quantitative results can be found in the paper. For Scenario 1, change crop_size to [64, 32] and set the flag use_crop_size to True in the config.py file. For both Scenarios 1 and 2, fix the flag with_var_appearance to False.
+Expected quantitative results can be found in the paper. For Scenario 1, set the argument crop_size to [64, 32] and set the flag use_crop_size to True in the config.py file. For both Scenarios 1 and 2, fix the flag with_var_appearance to False and ini-et-alpha to 0.
 
 After setting up the environment, we can train and test the code with:
 ```
